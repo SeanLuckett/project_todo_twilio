@@ -1,0 +1,18 @@
+<h1>Stuff you need to do</h1>
+
+<div id="task-list">
+  <table>
+    <thead>
+    <tr>
+      <th>Task</th>
+      <th>Due date</th>
+      <th>State</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @tasks.each do |task| %>
+      <%= render partial: 'task', locals: { task: task } %>
+    <% end %>
+    </tbody>
+  </table>
+</div>
