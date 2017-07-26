@@ -1,5 +1,5 @@
 <tr>
-  <td><%= task.description %></td>
+  <td><%= link_to task.description, task_path(task) %></td>
   <td><%= task.due %></td>
   <td><%= task.state %></td>
 </tr>
