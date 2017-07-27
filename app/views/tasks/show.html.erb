@@ -4,5 +4,8 @@
   <p>Task: <%= @task.description %></p>
   <p>Due: <%= @task.due %></p>
   <p><%= @task.state %></p>
-  <p><%= link_to 'Delete task', task_path(@task), method: :delete, data: {confirm: 'Delete task?'} %></p>
+  <p>
+    <%= link_to 'Edit task', edit_task_path(@task) %> |
+    <%= link_to 'Delete task', task_path(@task), method: :delete, data: {confirm: 'Delete task?'} %>
+  </p>
 </div>

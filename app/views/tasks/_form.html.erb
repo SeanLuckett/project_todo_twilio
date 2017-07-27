@@ -1,0 +1,19 @@
+<%= form_for @task do |form| %>
+    <fieldset>
+      <p>
+        <%= form.label :description %>
+        <%= form.text_field :description %>
+      </p>
+      <p>
+        <%= form.label :due %>
+        <%= form.date_select :due, order: [:month, :day, :year] %>
+      </p>
+      <p>
+        <%= form.label :state %>
+        <%= form.select :state, state: Task::PROGRESS_STATES %>
+      </p>
+      <p>
+        <%= form.submit %>
+      </p>
+    </fieldset>
+<% end %>

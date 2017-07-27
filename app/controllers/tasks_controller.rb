@@ -14,11 +14,25 @@ class TasksController < ApplicationController
   def create
     task = Task.new(
       description: task_params[:description],
-      due: Date.new(*flatten_date_array(params[:task]))
+      due: Date.new(*flatten_date_array(params[:task])),
+      state: params[:state]
     )
 
     if task.save
       redirect_to task_path(task)
+    end
+  end
+
+  def edit
+    @task = Task.find(params[:id])
+  end
+
+  def update
+    task = Task.find(params[:id])
+    if task.update(task_params)
+      redirect_to tasks_path
+    else
+      render :edit
     end
   end
 
