@@ -9,6 +9,14 @@
   </head>
 
   <body>
+    <section id="flash">
+     <% flash.each do |type, message| %>
+        <div>
+          <strong><%= type %>! <%= message %></strong>
+        </div>
+     <% end %>
+    </section>
+
     <nav>
       <%= link_to 'Stuff to do', tasks_path %> |
       <%= link_to 'Add a task', new_task_path %>

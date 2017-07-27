@@ -3,6 +3,6 @@ class Task < ApplicationRecord
 
   validates :state, inclusion: {
     in: PROGRESS_STATES,
-    message: '%{value} is not a valid state'
+    message: '%<value> is not a valid state'
   }
 end

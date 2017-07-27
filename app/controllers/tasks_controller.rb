@@ -12,14 +12,19 @@ class TasksController < ApplicationController
   end
 
   def create
-    task = Task.new(
+    @task = Task.new(
       description: task_params[:description],
       due: Date.new(*flatten_date_array(params[:task])),
-      state: params[:state]
+      state: task_params[:state]
     )
 
-    if task.save
-      redirect_to task_path(task)
+    if @task.save
+      flash.notice = 'Task created'
+      redirect_to task_path(@task)
+    else
+      flash.now[:error] = 'Could not create task'
+      flash.now[:errors] = @task.errors.messages
+      render :new
     end
   end
 
@@ -30,8 +35,10 @@ class TasksController < ApplicationController
   def update
     task = Task.find(params[:id])
     if task.update(task_params)
+      flash.notice = 'Task updated'
       redirect_to tasks_path
     else
+      flash.now[:error] = 'Problem with updating task'
       render :edit
     end
   end
@@ -39,6 +46,7 @@ class TasksController < ApplicationController
   def destroy
     task = Task.find(params[:id])
     task.destroy
+    flash.notice = 'Task destroyed'
     redirect_to tasks_path
   end
 
