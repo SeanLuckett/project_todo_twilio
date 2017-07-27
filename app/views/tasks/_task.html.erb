@@ -2,4 +2,5 @@
   <td><%= link_to task.description, task_path(task) %></td>
   <td><%= task.due %></td>
   <td><%= task.state %></td>
+  <td><%= link_to 'DELETE', task_path(task), method: :delete, data: {confirm: 'You sure?'} %></td>
 </tr>
