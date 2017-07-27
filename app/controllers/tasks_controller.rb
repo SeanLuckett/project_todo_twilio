@@ -33,12 +33,13 @@ class TasksController < ApplicationController
   end
 
   def update
-    task = Task.find(params[:id])
-    if task.update(task_params)
+    @task = Task.find(params[:id])
+    if @task.update(task_params)
       flash.notice = 'Task updated'
       redirect_to tasks_path
     else
       flash.now[:error] = 'Problem with updating task'
+      flash.now[:errors] = @task.errors.messages
       render :edit
     end
   end
